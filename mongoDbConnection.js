@@ -20,6 +20,11 @@ const MongoConnection = function(){
 
                 collection.find({}).toArray(function(err, docs) {
                     //assert.equal(err, null);
+                    if(err){
+                    console.log("Error occured while fetching products.");
+                    rej(err);           
+                    return;
+                }
                     console.log('Found the following records');
                     console.log(docs);
                     client.close();
