@@ -70,12 +70,15 @@ const MongoConnection = function(){
 
     function deleteProduct(data) {
         return new Promise((res,rej)=>{
+            console.log("Delete method called.");
             var client = new MongoClient(uri);
             client.connect(err => {
                 if (err) {
+                    console.log("Delete method error connection.");
                     rej(err);
                     return;
                 }
+                console.log("Delete method connected");
                 const db = client.db(dbName);
                 const collection = db.collection(collectionName);
 
@@ -85,7 +88,10 @@ const MongoConnection = function(){
                         client.close();
                         rej(err);
                     }
+                    
                     client.close();
+                    res();
+                    
 
                 });
             });
